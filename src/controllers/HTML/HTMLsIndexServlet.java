@@ -42,11 +42,12 @@ public class HTMLsIndexServlet extends HttpServlet {
             page = 1;
         }
         List<HTML> HTMLs = em.createNamedQuery("getAllHTMLs", HTML.class)
-                             .setFirstResult(15 * (page - 1))
-                             .setMaxResults(15)
+                             .setFirstResult(10 * (page - 1))
+                             .setMaxResults(10)
                              .getResultList();
         long HTMLs_count = (long)em.createNamedQuery("getHTMLsCount", Long.class)
                                      .getSingleResult();
+
         em.close();
 
         request.setAttribute("HTMLs", HTMLs);

@@ -16,7 +16,7 @@
     <body>
         <div class="container">
             <div id="wrapper">
-                <div id="header">
+                <div class="col-xs-12" id="header">
                     <h1>＜Code_on_Notebook /＞</h1>
                 </div>
                 <div id="content">
