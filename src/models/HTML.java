@@ -9,14 +9,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Table(name = "html")
-@NamedQuery(
+@NamedQueries({
+        @NamedQuery(
         name = "getAllHTMLs",
         query = "SELECT h FROM HTML AS h"
+        ),
+        @NamedQuery(
+        name = "getHTMLsCount",
+        query = "SELECT COUNT(h) FROM HTML AS h"
         )
+})
 
 @Entity
 public class HTML {

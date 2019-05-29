@@ -6,7 +6,7 @@
             <tbody>
                 <c:forEach var="category" items="${categories}" varStatus="status">
                     <tr>
-                        <td><a href="<c:url value='/${category.name}' />">${category.name}</a></td>
+                        <td><a href="<c:url value='/categories/${category.name}' />">${category.name}</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
