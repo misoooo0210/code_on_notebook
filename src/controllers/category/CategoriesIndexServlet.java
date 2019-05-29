@@ -34,19 +34,11 @@ public class CategoriesIndexServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
-
-        int page = 1;
-        try{
-            page = Integer.parseInt(request.getParameter("page"));
-        } catch(NumberFormatException e) { }
-        List<Category> categories = em.createNamedQuery("getAllCatgories", Category.class)
-                                       .setFirstResult(15 * (page - 1))
-                                       .setMaxResults(15)
+        List<Category> categories = em.createNamedQuery("getAllCategories", Category.class)
                                        .getResultList();
         em.close();
 
         request.setAttribute("categories", categories);
-        request.setAttribute("page", page);
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/categories/index.jsp");
         rd.forward(request, response);
