@@ -38,7 +38,7 @@ public class UsersIndexServlet extends HttpServlet {
 
         em.close();
 
-        request.setAttribute("user", login_user);
+        request.setAttribute("login_user", login_user);
         request.setAttribute("_token", request.getSession().getId());
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/index.jsp");

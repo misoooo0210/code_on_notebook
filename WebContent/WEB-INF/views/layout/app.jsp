@@ -37,14 +37,15 @@
                                 <ul class="nav navbar-nav">
                                     <li><a href="<c:url value='/categories' />">カテゴリ</a></li>
                                     <c:choose>
-                                        <c:when test="${user == null}">
+                                        <c:when test="${login_user == null}">
                                             <li><a href="<c:url value='/login' />">ログイン</a></li>
+                                            <li><a href="<c:url value='/account/new' />">新規登録</a></li>
                                         </c:when>
                                         <c:otherwise>
+                                            <li><a href="<c:url value='/account' />">アカウント情報</a></li>
                                             <li><a href="<c:url value='/logout' />">ログアウト</a></li>
                                         </c:otherwise>
                                     </c:choose>
-                                    <li><a href="<c:url value='/account/new' />">新規登録</a></li>
                                     <li><a href="#">このサイトについて</a></li>
                                 </ul>
                             </div>
