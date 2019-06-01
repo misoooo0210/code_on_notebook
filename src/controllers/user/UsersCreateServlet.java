@@ -54,7 +54,7 @@ public class UsersCreateServlet extends HttpServlet {
             u.setCreated_at(currentTime);
             u.setDelete_flag(0);
 
-            List<String> errors = UserValidator.validate(u, true, true);
+            List<String> errors = UserValidator.validate(u, true, true, true);
             if(errors.size() > 0) {
                 em.close();
 

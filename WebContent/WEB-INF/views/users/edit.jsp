@@ -6,7 +6,7 @@
             <c:when test="${user != null}">
                 <h2>登録情報編集</h2>
                 <p>（パスワードは変更する場合のみ入力してください）</p>
-                <form method="POST" action="<c:url value='/users/update' />">
+                <form method="POST" action="<c:url value='/users/account/update' />">
                     <c:import url="_form.jsp" />
                 </form>
                 <p><a href="<c:url value='/users/deactive?id=${user.id}' />">アカウントを削除する</a></p>

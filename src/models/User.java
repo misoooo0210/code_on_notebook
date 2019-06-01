@@ -14,6 +14,10 @@ import javax.persistence.Table;
 @Table(name = "users")
 @NamedQueries({
     @NamedQuery(
+            name = "checkRegisteredUsername",
+            query = "SELECT COUNT(u) FROM User AS u WHERE u.username = :username"
+            ),
+    @NamedQuery(
             name = "checkRegisteredEmail",
             query = "SELECT COUNT(u) FROM User AS u WHERE u.email = :email"
             ),
