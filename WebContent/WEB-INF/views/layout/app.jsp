@@ -37,7 +37,7 @@
                                 <ul class="nav navbar-nav">
                                     <li><a href="<c:url value='/categories' />">カテゴリ</a></li>
                                     <li><a href="#">ログイン</a></li>
-                                    <li><a href="#">新規登録</a></li>
+                                    <li><a href="<c:url value='/users/new' />">新規登録</a></li>
                                     <li><a href="#">このサイトについて</a></li>
                                 </ul>
                             </div>
