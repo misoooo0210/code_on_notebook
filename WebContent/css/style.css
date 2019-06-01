@@ -9,6 +9,7 @@ body {
     width: 100%;
     color: #faf0e6;
     background-color: #333333;
+    padding: initial;
 }
 
 #content {
