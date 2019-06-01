@@ -16,7 +16,7 @@ import utils.DBUtil;
 /**
  * Servlet implementation class UsersIndexServlet
  */
-@WebServlet("/users/mypage")
+@WebServlet("/account")
 public class UsersIndexServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -34,11 +34,11 @@ public class UsersIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        User u = em.find(User.class, Integer.parseInt(request.getParameter("id")));
+        User login_user = (User)request.getSession().getAttribute("login_user");
 
         em.close();
 
-        request.setAttribute("user", u);
+        request.setAttribute("user", login_user);
         request.setAttribute("_token", request.getSession().getId());
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/index.jsp");

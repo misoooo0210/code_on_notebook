@@ -6,7 +6,7 @@
             <c:when test="${user != null}">
                 <p>本当に退会しますか？</p>
 
-                <form method="POST" action="<c:url value='/users/account/destroy' />">
+                <form method="POST" action="<c:url value='/account/destroy' />">
                     <input type="hidden" name="_token" value="${_token}" />
                     <input type="submit" value="退会する">
                 </form>

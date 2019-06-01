@@ -19,7 +19,7 @@ import utils.EncryptUtil;
 /**
  * Servlet implementation class UsersUpdateServlet
  */
-@WebServlet("/users/account/update")
+@WebServlet("/account/update")
 public class UsersUpdateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -88,9 +88,8 @@ public class UsersUpdateServlet extends HttpServlet {
 
                 request.getSession().removeAttribute("id");
 
-                response.sendRedirect(request.getContextPath() + "/users/mypage");
+                response.sendRedirect(request.getContextPath() + "/account");
             }
         }
     }
-
 }

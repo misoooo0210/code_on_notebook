@@ -16,7 +16,7 @@ import utils.DBUtil;
 /**
  * Servlet implementation class UsersEditServlet
  */
-@WebServlet("/users/account/edit")
+@WebServlet("/account/edit")
 public class UsersEditServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -45,5 +45,4 @@ public class UsersEditServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/edit.jsp");
         rd.forward(request, response);
     }
-
 }

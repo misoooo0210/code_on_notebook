@@ -14,9 +14,9 @@ import models.User;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class UsersDeactiveServlet
+ * Servlet implementation class UsersDestroyServlet
  */
-@WebServlet("/users/account/deactive")
+@WebServlet("/account/deactive")
 public class UsersDeactiveServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -41,8 +41,24 @@ public class UsersDeactiveServlet extends HttpServlet {
         request.setAttribute("user", u);
         request.setAttribute("_token", request.getSession().getId());
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/deactive.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/destroy.jsp");
         rd.forward(request, response);
     }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String _token = (String)request.getParameter("_token");
+        if(_token != null && _token.equals(request.getSession().getId())) {
+            EntityManager em = DBUtil.createEntityManager();
+
+            User u = em.find(User.class, (Integer)(request.getSession().getAttribute("id")));
+            u.setDelete_flag(1);
+
+            em.getTransaction().begin();
+            em.getTransaction().commit();
+            em.close();
+            request.getSession().setAttribute("flush", "削除が完了しました。ご利用ありがとうございました。");
+
+            response.sendRedirect(request.getContextPath() + "/");
+        }
+    }
 }
