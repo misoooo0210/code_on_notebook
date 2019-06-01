@@ -32,13 +32,18 @@ public class ToppageIndexServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(request.getSession().getAttribute("flush") != null) {
+            request.setAttribute("flush", request.getSession().getAttribute("flush"));
+            request.getSession().removeAttribute("flush");
+        }
+
         EntityManager em = DBUtil.createEntityManager();
 
         User login_user = (User)request.getSession().getAttribute("login_user");
 
         em.close();
 
-        request.setAttribute("user", login_user);
+        request.setAttribute("login_user", login_user);
         request.setAttribute("_token", request.getSession().getId());
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");

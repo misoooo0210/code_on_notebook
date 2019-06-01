@@ -18,16 +18,16 @@ import utils.DBUtil;
 import utils.EncryptUtil;
 
 /**
- * Servlet implementation class UsersCreateServlet
+ * Servlet implementation class UsersRegistrationCreateServlet
  */
-@WebServlet("/account/create")
-public class UsersCreateServlet extends HttpServlet {
+@WebServlet("/registration/create")
+public class UsersRegistrationCreateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UsersCreateServlet() {
+    public UsersRegistrationCreateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -69,10 +69,13 @@ public class UsersCreateServlet extends HttpServlet {
             em.persist(u);
             em.getTransaction().commit();
             em.close();
+
+            request.getSession().setAttribute("login_user", u);
             request.getSession().setAttribute("flush", "登録が完了しました！");
 
             response.sendRedirect(request.getContextPath() + "/");
         }
     }
     }
+
 }

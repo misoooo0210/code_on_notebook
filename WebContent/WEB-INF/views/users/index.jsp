@@ -9,7 +9,7 @@
         </c:if>
         <c:choose>
             <c:when test="${login_user != null}">
-                <h2>${login_user.username}のアカウント情報</h2>
+                <h2>${login_user.username}さんのアカウント情報</h2>
 
                 <h3>登録情報</h3><br />
                 ユーザ名 : <c:out value="${login_user.username}" /><br />

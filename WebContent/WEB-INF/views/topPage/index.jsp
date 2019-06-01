@@ -7,6 +7,15 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h3>ようこそ、<c:out value="${user.username}" />さん</h3>
+        <c:choose>
+            <c:when test="${login_user != null}">
+                <p id="toppage_p">ようこそ、<c:out value="${login_user.username}" />さん</p>
+            </c:when>
+            <c:otherwise>
+                <p id="toppage_p">ようこそ、ゲストさん</p>
+            </c:otherwise>
+        </c:choose>
+        <h2>今日の気まぐれコード</h2>
+        <h2>人気のコード</h2>
     </c:param>
 </c:import>

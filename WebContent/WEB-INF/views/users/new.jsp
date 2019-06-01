@@ -4,7 +4,7 @@
     <c:param name="content">
         <h2>ユーザ 新規登録ページ</h2>
 
-        <form method="POST" action="<c:url value='/account/create' />">
+        <form method="POST" action="<c:url value='/registration/create' />">
             <c:import url="_form.jsp" />
         </form>
 
