@@ -30,6 +30,27 @@ public class UserValidator {
         return errors;
     }
 
+    //ユーザ名
+    private static String _validateUsername(String username, Boolean username_duplicate_check_flag) {
+        if(username == null || username.equals("")) {
+            return "ユーザ名を入力してください。";
+        }
+
+        //既に登録されているユーザ名との重複チェック
+        if(username_duplicate_check_flag) {
+            EntityManager em = DBUtil.createEntityManager();
+            long users_count = (long)em.createNamedQuery("checkRegisteredUsername", Long.class)
+                                          .setParameter("username", username)
+                                          .getSingleResult();
+            em.close();
+            if(users_count > 0) {
+                return "入力したユーザ名は既に使われています。他のユーザ名を設定してください。";
+            }
+        }
+
+        return "";
+    }
+
     // メールアドレス
     private static String _validateEmail(String email, Boolean email_duplicate_check_flag) {
         // 必須入力チェック
@@ -46,27 +67,6 @@ public class UserValidator {
             em.close();
             if(emails_count > 0) {
                 return "別のメールアドレスを利用してください。";
-            }
-        }
-
-        return "";
-    }
-
-    //ユーザ名
-    private static String _validateUsername(String username, Boolean username_duplicate_check_flag) {
-        if(username == null || username.equals("")) {
-            return "ユーザ名を入力してください。";
-        }
-
-        //既に登録されているユーザ名との重複チェック
-        if(username_duplicate_check_flag) {
-            EntityManager em = DBUtil.createEntityManager();
-            long users_count = (long)em.createNamedQuery("checkRegisteredUsername", Long.class)
-                                          .setParameter("username", username)
-                                          .getSingleResult();
-            em.close();
-            if(users_count > 0) {
-                return "入力したユーザ名は既に使われています。他のユーザ名を設定してください。";
             }
         }
 

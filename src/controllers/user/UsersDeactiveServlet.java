@@ -14,16 +14,16 @@ import models.User;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class UsersEditServlet
+ * Servlet implementation class UsersDeactiveServlet
  */
-@WebServlet("/users/account/edit")
-public class UsersEditServlet extends HttpServlet {
+@WebServlet("/users/account/deactive")
+public class UsersDeactiveServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UsersEditServlet() {
+    public UsersDeactiveServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,9 +40,8 @@ public class UsersEditServlet extends HttpServlet {
 
         request.setAttribute("user", u);
         request.setAttribute("_token", request.getSession().getId());
-        request.getSession().setAttribute("id", u.getId());
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/edit.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/deactive.jsp");
         rd.forward(request, response);
     }
 

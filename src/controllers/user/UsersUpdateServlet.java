@@ -39,7 +39,7 @@ public class UsersUpdateServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            User u = em.find(User.class, (Integer)(request.getSession().getAttribute("user_id")));
+            User u = em.find(User.class, (Integer)(request.getSession().getAttribute("id")));
 
             Boolean username_duplicate_check = true;
             if(u.getUsername().equals(request.getParameter("username"))) {
@@ -86,7 +86,7 @@ public class UsersUpdateServlet extends HttpServlet {
                 em.close();
                 request.getSession().setAttribute("flush", "更新が完了しました。");
 
-                request.getSession().removeAttribute("user_id");
+                request.getSession().removeAttribute("id");
 
                 response.sendRedirect(request.getContextPath() + "/users/mypage");
             }

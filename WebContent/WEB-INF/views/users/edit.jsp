@@ -9,7 +9,7 @@
                 <form method="POST" action="<c:url value='/users/account/update' />">
                     <c:import url="_form.jsp" />
                 </form>
-                <p><a href="<c:url value='/users/deactive?id=${user.id}' />">アカウントを削除する</a></p>
+                <p><a href="<c:url value='/users/account/deactive?id=${user.id}' />">アカウントを削除する</a></p>
             </c:when>
             <c:otherwise>
                 <p>お探しのページは見つかりませんでした。</p>
