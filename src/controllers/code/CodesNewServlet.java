@@ -1,4 +1,4 @@
-package controllers.category;
+package controllers.code;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,19 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Category;
+import models.Code;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class CategoriesIndexServlet
+ * Servlet implementation class CodesNewServlet
  */
-@WebServlet("/categories")
-public class CategoriesIndexServlet extends HttpServlet {
+@WebServlet("/codes/new")
+public class CodesNewServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CategoriesIndexServlet() {
+    public CodesNewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,14 +34,18 @@ public class CategoriesIndexServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("_token", request.getSession().getId());
+
         EntityManager em = DBUtil.createEntityManager();
-        List<Category> categories = em.createNamedQuery("getAllCategories", Category.class)
+        List<Category> categoryList = em.createNamedQuery("getAllCategories", Category.class)
                                        .getResultList();
         em.close();
 
-        request.setAttribute("categories", categories);
+        Code c = new Code();
+        request.setAttribute("code", c);
+        request.setAttribute("categoryList", categoryList);
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/categories/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/codes/new.jsp");
         rd.forward(request, response);
     }
 }

@@ -3,7 +3,7 @@
 	<persistence-unit name="code_on_notebook" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>models.Category</class>
-		<class>models.HTML</class>
+		<class>models.Code</class>
 		<class>models.User</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

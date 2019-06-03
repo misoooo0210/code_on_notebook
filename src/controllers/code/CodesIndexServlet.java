@@ -1,4 +1,4 @@
-package controllers.HTML;
+package controllers.code;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,20 +11,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.HTML;
+import models.Category;
+import models.Code;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class HTMLsIndexServlet
+ * Servlet implementation class CodesIndexServlet
  */
-@WebServlet("/categories/html")
-public class HTMLsIndexServlet extends HttpServlet {
+@WebServlet("/codes")
+public class CodesIndexServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HTMLsIndexServlet() {
+    public CodesIndexServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,21 +42,22 @@ public class HTMLsIndexServlet extends HttpServlet {
         } catch (Exception e) {
             page = 1;
         }
-        List<HTML> HTMLs = em.createNamedQuery("getAllHTMLs", HTML.class)
+        List<Code> codes = em.createNamedQuery("getAllCodes", Code.class)
                              .setFirstResult(10 * (page - 1))
                              .setMaxResults(10)
                              .getResultList();
-        long HTMLs_count = (long)em.createNamedQuery("getHTMLsCount", Long.class)
+        long codes_count = (long)em.createNamedQuery("getCodesCount", Long.class)
                                      .getSingleResult();
-
+        List<Category> categories = em.createNamedQuery("getAllCategories", Category.class)
+                                       .getResultList();
         em.close();
 
-        request.setAttribute("HTMLs", HTMLs);
-        request.setAttribute("HTMLs_count", HTMLs_count);
+        request.setAttribute("codes", codes);
+        request.setAttribute("codes_count", codes_count);
+        request.setAttribute("categories", categories);
         request.setAttribute("page", page);
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/HTMLs/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/codes/index.jsp");
         rd.forward(request, response);
     }
-
 }

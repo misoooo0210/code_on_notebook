@@ -1,4 +1,4 @@
-package models;
+    package models;
 
 import java.sql.Timestamp;
 
@@ -14,27 +14,31 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@Table(name = "html")
+@Table(name = "codes")
 @NamedQueries({
         @NamedQuery(
-        name = "getAllHTMLs",
-        query = "SELECT h FROM HTML AS h"
+        name = "getAllCodes",
+        query = "SELECT c FROM Code AS c"
         ),
         @NamedQuery(
-        name = "getHTMLsCount",
-        query = "SELECT COUNT(h) FROM HTML AS h"
+        name = "getCodesCount",
+        query = "SELECT COUNT(c) FROM Code AS c"
         )
 })
 
 @Entity
-public class HTML {
+public class Code {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "category_no", nullable = false)
+    @JoinColumn(name = "author", nullable = false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "category", nullable = false)
     private Category category;
 
     @Column(name = "title", length = 255, nullable = false)
@@ -53,6 +57,14 @@ public class HTML {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Category getCategory() {

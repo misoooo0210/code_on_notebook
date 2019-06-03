@@ -35,7 +35,7 @@
                             </div>
                             <div class="collapse navbar-collapse" id="navbarEexample8">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="<c:url value='/categories' />">カテゴリ</a></li>
+                                    <li><a href="<c:url value='/codes' />">コード</a></li>
                                     <c:choose>
                                         <c:when test="${login_user == null}">
                                             <li><a href="<c:url value='/login' />">ログイン</a></li>
