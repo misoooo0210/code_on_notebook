@@ -36,8 +36,8 @@
                 <tbody>
                     <c:forEach var="code" items="${codes}" varStatus="status">
                         <tr>
-                            <td><a href="<c:url value='/codes/id=${code.id}' />">${code.title}</a></td>
-                            <td>${code.created_at}</td>
+                            <td><a href="<c:url value='/codes/show?id=${code.id}' />">${code.title}</a></td>
+                            <td><fmt:formatDate value='${code.created_at}' pattern='yyyy/MM/dd' /></td>
                             <td>${code.content}</td>
                         </tr>
                     </c:forEach>
