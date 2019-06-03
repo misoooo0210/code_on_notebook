@@ -37,9 +37,8 @@ public class Code {
     @JoinColumn(name = "author", nullable = false)
     private User user;
 
-    @ManyToOne
     @JoinColumn(name = "category", nullable = false)
-    private Category category;
+    private String category;
 
     @Column(name = "title", length = 255, nullable = false)
     private String title;
@@ -67,11 +66,11 @@ public class Code {
         this.user = user;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 

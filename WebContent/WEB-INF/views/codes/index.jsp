@@ -3,9 +3,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
+        <c:if test="${flush != null}">
+            <div id="flush_success">
+                <c:out value="${flush}"></c:out>
+            </div>
+        </c:if>
+
         <h2>すべてのコード</h2>
         <p>${codes_count}件のエントリがあります。</p><br />
-        <div id="sidebar" class="col-md-2 hidden-sm hidden-xs">
+        <div id="sidebar" class="col-md-4 col-sm-2">
             <div class="sidebar-inner">
                 <div class="global-nav-header">言語を選択</div>
                     <ul class="global-nav">
@@ -25,17 +31,19 @@
             </c:otherwise>
         </c:choose>
 
-        <table id ="code_list">
-            <tbody>
-                <c:forEach var="code" items="${codes}" varStatus="status">
-                    <tr>
-                        <td><a href="<c:url value='/codes/id=${code.id}' />">${code.title}</a></td>
-                        <td>${code.created_at}</td>
-                        <td>${code.content}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+        <div id="main_contents" class="col-md-8 col-sm-10 col-xs-12" style="background: #fff">
+            <table id ="code_list">
+                <tbody>
+                    <c:forEach var="code" items="${codes}" varStatus="status">
+                        <tr>
+                            <td><a href="<c:url value='/codes/id=${code.id}' />">${code.title}</a></td>
+                            <td>${code.created_at}</td>
+                            <td>${code.content}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
 
         <nav>
         <ul class="pagination">
